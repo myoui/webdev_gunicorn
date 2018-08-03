@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    {% include '_post.html' %}
+    {% if comments %}
+    {% for comment in comments %}
+    <div class=post>
+        <b>{{ comment.username }}</b> commented:<br>
+        {{ comment.body }}<br>
+        <div class=timestamp>{{ comment.timestamp }}</div><br><br>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <h3>New Comment</h3>
+    <div class=post>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.postbody(cols=50, rows=4,  class_='formtext') }}<br>
+            {% for error in form.postbody.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+      </div>
+    </form>
+{% endblock %}

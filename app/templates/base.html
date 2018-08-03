@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href={{ url_for('static', filename='style.css') }}>
+        {% if title %}
+        <title>{{ title }} - Twitter?</title>
+        {% else %}
+        <title>blog</title>
+        {% endif %}
+    </head>
+    <body>
+      <div class=content>
+        <img src="{{ url_for('static', filename='icon.png') }}"/>
+        <div class=titlename>Twitter?</div><br>
+        <span class=menu>
+          <a href="{{ url_for('index') }}">Home</a></span>
+          {% if current_user.is_anonymous %}
+        <span class=menu>
+          <a href="{{ url_for('login') }}">Login</a></span>
+          {% else %}
+        <span class=menu>
+          <a href="{{ url_for('new_post') }}">New Post</a></span>
+        <span class=menu>
+          <a href="{{ url_for('user', username=current_user.username) }}">Profile</a></span>
+        <span class=menu>
+          Logged in as <b>{{ current_user.username }}</b>
+          <a onclick="return confirm('Are you sure you want to logout?')" href="{{ url_for('logout') }}"><i>Logout</i></a></span>
+          {% endif %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+          <div class=post>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+          </div>
+        </ul>
+        {% endif %}
+        {% endwith %}
+      <br><br><br>
+      <div class=block>
+        {% block content %}{% endblock %}
+      </div>
+        {% if users %}
+        Registered users:<br>
+        {% for user in users %}
+        <a href="{{ url_for('user', username=user.username, action=None) }}">{{ user.username}}</a>{% if user.admin %}[admin]{% endif %} |
+        {% endfor %}<br>
+        {% endif %}
+        <footer>
+        dev ver0.1<br>
+        {% if current_user.admin == 1 %}
+        <a href="{{ url_for('admin') }}">admin panel</a>
+        {% endif %}
+      </footer>
+    </div>
+    </body>
+</html>

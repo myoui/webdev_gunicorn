@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class=post>
+    <h2>New Post</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.postbody(cols=50, rows=4, class_='formtext') }}<br>
+            {% for error in form.postbody.errors %}
+            <span style="color: red;">[{{ error }}]</span><br>
+            {% endfor %}
+            <br>
+            {{ form.attachment.label }} (Max size: 10mb. Allowed file types:
+            {% for type in form.attach_types %}
+            {{ type }},
+            {% endfor %}
+            )
+            <br>
+            {{ form.attachment }}<br>
+            {% for error in form.attachment.errors %}
+            <span style="color: red;">[{{ error }}]</span><br>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+{% endblock %}

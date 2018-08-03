@@ -1,0 +1,5 @@
+*.pyc
+*.bat
+certs/*
+_pycache_/*
+venv/*

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+    <tr valign="top">
+        <td><img src="{{ user.avatar(128) }}"></td>
+        <td>
+            <h2>User: {{ user.username }}{% if user.admin %} [Administrator]{% endif %}</h2>
+            {% if current_user != user %}
+            {% if not current_user.is_following(user) %}
+            <span class=menu><a href="{{ url_for('follow', username=user.username) }}"><b>Follow</b></a></span>
+            {% endif %}
+            {% if current_user.is_following(user) %}
+            <span class=menu><a href="{{ url_for('unfollow', username=user.username) }}"><b>Following</b> (Click to unfollow)</a></span>
+            {% endif %}
+            {% endif %}
+            {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+            {% if user.last_seen %}<p>Last seen on: UTC {{ user.last_seen }}</p>{% endif %}
+            {% if user == current_user %}
+            <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+            {% endif %}
+
+        </td>
+    </tr>
+</table>
+    {% for post in posts %}
+        {% include '_post.html' %}
+    {% endfor %}
+{% endblock %}

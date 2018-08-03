@@ -1,0 +1,79 @@
+.content {
+  max-width: 700px;
+  margin: auto;
+}
+body {
+  font-family: "Arial";
+  font-size: 15px;
+  background-color: #99ccff;
+}
+.formtext {
+  font-family: inherit;
+  font-size: 14px;
+}
+.titlename {
+  font-family: "Helvetica";
+  font-size: 20px;
+  font-weight: bold;
+}
+.menu {
+  font-size: 14.5px;
+  background-color: white;
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2px;
+  margin: 2px;
+}
+.post {
+  background-color: white;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 10px;
+  padding: 3px;
+  margin-bottom: 8px;
+}
+.post:nth-of-type(even) {
+  background-color: #d4ece4;
+}
+table {
+  font-size: 17px;
+  padding: 4px;
+}
+.timestamp {
+  font-size: 12px;
+  font-style: italic;
+}
+.authorname {
+  font-style: bold;
+}
+.admin {
+  font-size: 11.5px;
+}
+.attach {
+  font-size: 12px;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: blue;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+footer {
+  font-size: 12px;
+  font-style: italic;
+}
+a {
+  text-decoration: none;
+}
+a:link, a:visited {
+  color: #purple;
+}
+a:hover {
+  text-decoration:underline;
+}
+br {
+  line-height: 5px;
+}
+hr {
+  border-width: 1px;
+  border-style: groove;
+}

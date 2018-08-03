@@ -1,0 +1,21 @@
+<div class=post>
+<table>
+    <tr valign="top">
+        <td halign="center"><img src="{{ post.author.avatar(64) }}"><br>
+        </td>
+        <td><b><a href="{{ url_for('user', username=post.username) }}">{{ post.username }}</a></b> says:<br>&nbsp;&nbsp;{{ post.body }}
+        <br><br><br>
+        <div class=timestamp>UTC: {{ post.timestamp.isoformat() }}</div>
+        {% if post.attachment %}
+        <span class=attach><a href="{{ url_for('static', filename="files/") }}{{ post.attachment }}" target="_blank">attachment: </a>{{ post.attachment }}</span>
+        {% endif %}
+        <br>
+        <div class=timestamp><a href="{{ url_for('getpost', post_id=post.id) }}">Comment(s)</a></div>
+        </td>
+        {% if current_user.admin == 1 or current_user.username == post.username %}
+        <div class=admin>
+          <a href="{{ url_for('delete_post', post_id=post.id) }}" onclick="return confirm('Are you sure you want to delete this post?')">DELETE POST ▼</a></div>
+        {% endif %}
+    </tr>
+</table>
+</div>
